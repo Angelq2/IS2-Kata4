@@ -1,5 +1,6 @@
 package kata4.view;
 
+import java.util.List;
 import kata4.model.Histogram;
 import kata4.model.Mail;
 
@@ -10,9 +11,17 @@ import kata4.model.Mail;
  * @author angel
  */
 public class MailHistogramBuilder {
-    /*
-    public Histogram<String> build(List<Mail> lista){
+    
+    public static Histogram<String> build(List<Mail> lista){
+        Histogram<String> histogram = new Histogram<>();
+        int index = 0;
+        for (Mail mail : lista) {
+            histogram.increment(lista.get(index).getDomain());
+            index ++;
+        }
+        
+        return histogram;
         
     }
-    */
+    
 }

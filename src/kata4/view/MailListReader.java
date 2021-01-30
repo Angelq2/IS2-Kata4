@@ -1,5 +1,12 @@
 package kata4.view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern; 
 import kata4.model.Mail;
 
 /**
@@ -10,9 +17,34 @@ import kata4.model.Mail;
  * @author angel
  */
 public class MailListReader {
-    /*
-    public List<Mail> read(String fileName){
+    
+    public static List<Mail> read(String fileName) throws Exception{
         
+        List<Mail> lista = new ArrayList<>();
+        File fichero = new File(fileName);
+        
+        try{
+            Scanner scan = new Scanner(fichero);
+            
+            
+    
+            Pattern pattern = Pattern
+                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+            
+            while(scan.hasNextLine()){
+                String linea =  scan.nextLine();
+                Matcher mather = pattern.matcher(linea);
+                if (mather.find() == true) {
+                    lista.add(new Mail(linea));
+                }
+            }
+        
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        return lista;
     }
-    */
+    
 }
+

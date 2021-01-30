@@ -15,6 +15,6 @@ public class Mail {
     }
     
     public String getDomain(){
-        return null;
+        return mail.substring(mail.indexOf('@')+1);
     }
 }
