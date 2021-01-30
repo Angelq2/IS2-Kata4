@@ -16,14 +16,40 @@ import kata4.view.MailListReader;
  */
 
 public class Kata4 {
-
+    
+    private static String fileName;
+    private static List<Mail> mailList;
+    private static Histogram<String> histo;
+    private static HistogramDisplay histoDisplay;
+    
     public static void main(String[] args) throws Exception {
-        String fileName = new String("C:\\Users\\angel\\OneDrive\\Documentos\\NetBeansProjects\\Kata4\\txtFileEmail\\email.txt");
-        List<Mail> mailList = MailListReader.read(fileName);
-        Histogram<String> histo = MailHistogramBuilder.build(mailList);
-        
-        HistogramDisplay histoDisplay = new HistogramDisplay(histo);
-        histoDisplay.execute();
+        execute();
     }
     
+      public static void execute() throws Exception {
+        input();
+        process();
+        output();
+    }
+
+    public static void input() {
+        try {
+            fileName = new String("C:\\Users\\angel\\OneDrive\\Documentos\\NetBeansProjects\\Kata4\\txtFileEmail\\email.txt");
+            mailList = MailListReader.read(fileName);
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error con el fichero");
+        }
+    }
+
+    public static void process() {
+        histo = MailHistogramBuilder.build(mailList);
+    }
+
+    public static void output() {
+        histoDisplay = new HistogramDisplay(histo);
+        histoDisplay.execute();
+    }        
+
 }
+ 
+  
